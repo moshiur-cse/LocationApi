@@ -2,6 +2,8 @@ package com.moshiurcse.locationapimvvm;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.location.Location;
 import android.os.Bundle;
@@ -15,12 +17,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 public class MainActivity extends AppCompatActivity {
     //Find accurate location
     private FusedLocationProviderClient providerClient;
+    private LocationViewModel locationViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         providerClient= LocationServices.getFusedLocationProviderClient(this);
+        //locationViewModel=new ViewModelProvider(this).get()
     }
 
     @Override
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 if(location==null){
                     return;
                 }
+                locationViewModel.setLocationMutableLiveData(location);
                 double lat=location.getLatitude();
                 double lng=location.getLongitude();
 
