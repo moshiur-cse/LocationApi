@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         providerClient= LocationServices.getFusedLocationProviderClient(this);
-        //locationViewModel=new ViewModelProvider(this).get()
+        locationViewModel=new ViewModelProvider(this).get(LocationViewModel.class);
     }
 
     @Override
@@ -56,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 locationViewModel.setLocationMutableLiveData(location);
-                double lat=location.getLatitude();
+                /*double lat=location.getLatitude();
                 double lng=location.getLongitude();
 
                 Log.e("Currenct Location:","Lat:"+lat);
-                Log.e("Currenct Location:","long:"+lng);
+                Log.e("Currenct Location:","long:"+lng);*/
 
 
             }
